@@ -1,0 +1,403 @@
+
+
+
+  html{
+    overflow-x: hidden;
+    scrollbar-width: none;
+    background-image: url("elemeents/Elements 1-01.jpg");
+    
+   }
+    body {
+      display: grid;
+      height: 100vh;
+      margin: 0;
+      grid-template-columns: repeat(4, 1fr);
+      grid-template-rows: auto;
+      /* gap: 10px; */
+
+    }
+   /* div {
+      background-color: lightblue;
+      border: 1px solid #333;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 1.5rem;
+
+    }  */
+    header {
+        position: fixed;
+        /* top: 1VW;
+        left: 10vw;
+        right: 10vw; */
+        z-index: 100;
+        background-color: #254844;
+        height: 12vw;
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        border-radius: 0px;
+        font-family: Cairo-Regular;
+        color: white;
+        padding: 0 3vw;
+        width: 100vw;
+    }
+
+    header img{
+        width: 12vw;
+        height: 6vw;
+        /* border: 1px solid #333;  */
+    }
+    header ul{
+        display: flex;
+        flex-direction: column;
+        list-style-type:none ;
+        gap: 10vw;
+        padding: 0;
+        /* border: 1px solid #333;  */
+        width: 100vw;
+    }
+
+    header li{
+        margin-left: 1vw;
+    }
+    header a{
+        
+        text-decoration: none;
+        color: white;
+        font-size: 6vw;
+    }
+    header .dropdown{
+      position: relative;
+      display: inline-block;
+    }
+    header .dropdown-content{
+      display: none;
+      position: absolute;
+      background-color: #254844;
+
+      z-index: 1;
+    }
+    .dropdown:hover .dropdown-content{
+      display: block;
+      left: -3vw;
+      height: 200vw;
+      opacity: 0.95;
+    }
+  main{
+  grid-column: 1/6;
+    grid-row: 1/auto;
+   display: grid;
+   grid-template-columns:  repeat(4,1fr);
+   grid-template-rows: auto;
+   /* border: 1pt black solid; */
+   font-family: Cairo-Regular;
+  }
+  main section{
+    grid-column: 1/4;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    height: 100vw;
+    color: beige;
+  }
+  
+main .title { 
+    background-image: url(Correct/file.jpg);
+    width: 100vw;
+    background-repeat: no-repeat;
+    
+  }
+ main   h2{
+    font-size: 10vw;
+  }
+  main p{
+    font-size: 3vw;
+  }
+  main .TXT_card1{
+    color: #254844;
+  }
+  main .ITD{
+    background-image: url(Correct/ITD.jpg);
+    
+  }
+  main .KIT{
+    background-image:url(Correct/KIT.jpg) ;
+   
+  }
+  main .FTD{
+    background-image: url(Correct/FTD.jpg);
+  }
+ main .WLC{
+    background-image: url(Correct/WLC.png);
+ }
+ main .CMG{
+    background-image: url(Correct/CMG.jpg);
+ }
+ main .AppearingTxt{
+  opacity: 0;
+  transition: opacity 0.5s ease-in-out;
+  /* border: 1pt black solid; */
+  width: 100vw;
+  text-align: center;
+ }
+ main .AppearingTxt:hover{
+  opacity: 1;
+ }
+ main .overlay-container {
+  position: relative;
+  width: 100%;
+  height: 100%;
+ 
+}
+  main  .overlay {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background-color: #254844;
+  opacity: 0;
+  transition: opacity 0.5s ease-in-out;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+}
+  main .overlay-container:hover .overlay {
+    opacity: 0.65;
+  }
+
+
+  footer{
+    grid-row: 70/auto;
+    grid-column: 1/6;
+    width: 100vw;
+    height: 40vw;
+    background-image:url("elemeents/Group 1241.png") ;
+    display: flex;
+    flex-direction: row;
+    font-family: Cairo-Regular;
+}
+footer ul{
+    list-style-type: none;
+    font-family: Cairo-Regular;
+    /* border: 1pt black solid; */
+    width: 100vw;
+
+}
+footer li{
+    font-family: Cairo-Regular;
+    color: white;
+    font-size: 4vw;
+}
+footer footerTitle{
+  font-size: 6vw;
+}
+.desktop{
+  display: none;
+}
+
+@media only screen and (min-width: 600px){
+.desktop{
+  display: block;
+}
+  html{
+    overflow-x: hidden;
+    scrollbar-width: none;
+    background-image: url("elemeents/Elements 1-01.jpg");
+    
+   }
+    body {
+      display: grid;
+      height: 100vh;
+      margin: 0;
+      grid-template-columns: repeat(4, 1fr);
+      grid-template-rows: auto;
+      /* gap: 10px; */
+     
+
+    }
+   /* div {
+      background-color: lightblue;
+      border: 1px solid #333;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 1.5rem;
+
+    }  */
+    header {
+      position: fixed;
+      top: 1VW;
+      left: 6.2vw;
+      right: 10vw;
+      z-index: 100;
+      background-color: #254844;
+      height: 3vw;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      border-radius: 5px;
+      font-family: Cairo-Regular;
+      padding: 0 1vw;
+      width: 87.5vw;
+      box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
+  }
+  
+  
+  header img{
+      width: 4vw;
+      height: 2vw;
+      /* border: 1px solid #333;  */
+  }
+  header ul{
+      display: flex;
+      flex-direction: row;
+      list-style-type:none ;
+      gap: 0;
+      padding: 0;
+      /* border: 1px solid #333;  */
+      width: 32vw;
+  }
+ 
+  header li{
+      margin-left: 1vw;
+  }
+  header a{
+      font-size: 1;
+      text-decoration: none;
+      color: white;
+      font-size: 1vw;
+  }
+  header .dropdown{
+    display: none;
+      
+    }
+    header .dropdown-content{
+      display: none;
+      position: absolute;
+      background-color: #254844;
+  
+      z-index: 1;
+    }
+    .dropdown:hover .dropdown-content{
+      display: block;
+      left: 0vw;
+      height: 3vw;
+      opacity: 0.95;
+    }
+main
+  main{
+    grid-column: 1/6;
+    grid-row: 1/auto;
+   display: grid;
+   grid-template-columns:  repeat(4,1fr);
+   grid-template-rows: auto;
+   /* border: 1pt black solid; */
+   font-family: Cairo-Regular;
+  }
+  main section{
+    grid-column: 1/4;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    height: 50vw;
+    color: beige;
+  }
+main .title { 
+    background-image: url(Correct/file.jpg);
+    width: 100vw;
+    background-repeat: no-repeat;
+    
+  }
+ main   h2{
+    font-size: 5vw;
+  }
+  main p{
+    font-size: 1.5vw;
+  }
+  main .TXT_card1{
+    color: #254844;
+  }
+  main .ITD{
+    background-image: url(Correct/ITD.jpg);
+    
+  }
+  main .KIT{
+    background-image:url(Correct/KIT.jpg) ;
+   
+  }
+  main .FTD{
+    background-image: url(Correct/FTD.jpg);
+  }
+ main .WLC{
+    background-image: url(Correct/WLC.png);
+ }
+ main .CMG{
+    background-image: url(Correct/CMG.jpg);
+ }
+ main .AppearingTxt{
+  opacity: 0;
+  transition: opacity 0.5s ease-in-out;
+  /* border: 1pt black solid; */
+  width: 100vw;
+  text-align: center;
+ }
+ main .AppearingTxt:hover{
+  opacity: 1;
+ }
+ main .overlay-container {
+  position: relative;
+  width: 100%;
+  height: 100%;
+ 
+}
+  main  .overlay {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background-color: #254844;
+  opacity: 0;
+  transition: opacity 0.5s ease-in-out;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+}
+  main .overlay-container:hover .overlay {
+    opacity: 0.65;
+  }
+
+
+    footer{
+        grid-row: 2/auto;
+        grid-column: 1/6;
+        width: 100vw;
+        height: 15vw;
+        background-color: #254844;
+        grid-template-columns: 1fr 1fr 1fr;
+        display: grid;
+        font-family: Cairo-Regular;
+    }
+    footer ul{
+        list-style-type: none;
+        font-family: Cairo-Regular;
+
+    }
+    footer li{
+        font-family: Cairo-Regular;
+        color: white;
+        font-size: 1vw;
+    }
+
+}
+
+
+
+
+
