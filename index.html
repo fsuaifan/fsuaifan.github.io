@@ -1,129 +1,402 @@
-
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="stylesheet" href="reset.css">
-    <link rel="stylesheet" href="font_list.css">
-    <link rel="stylesheet" href="homepage.css">
-    
-    <title>Document</title>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>Fahd Suaifan — Portfolio</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@400;500;700;800&family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+<style>
+  :root{
+    --paper:#FFFFFF;
+    --ink:#3A3A3A;
+    --ink-strong:#2A2A2A;
+    --muted:#8C8C8C;
+    --rule:#9A9A9A;
+    --rule-soft:#DDDDDD;
+    --surface:#F3F3F3;
+    --footer-bg:#4A4A4A;
+    --mono: 'JetBrains Mono', 'Courier New', monospace;
+    --sans: 'Inter', -apple-system, 'Segoe UI', Roboto, sans-serif;
+    box-sizing:border-box;
+    padding-top:env(safe-area-inset-top,0px);
+    padding-bottom:env(safe-area-inset-bottom,0px);
+  }
+  @media (prefers-color-scheme: dark){
+    :root:not([data-theme="light"]){
+      --paper:#FFFFFF;
+      --ink:#3A3A3A;
+      --ink-strong:#2A2A2A;
+      --muted:#8C8C8C;
+      --rule:#9A9A9A;
+      --rule-soft:#DDDDDD;
+      --surface:#F3F3F3;
+      --footer-bg:#4A4A4A;
+    }
+  }
+  *{margin:0;padding:0;box-sizing:border-box;}
+  html{scroll-padding-top:env(safe-area-inset-top,0px);}
+  body{
+    background:var(--paper);
+    color:var(--ink);
+    font-family:var(--sans);
+    line-height:1.6;
+    -webkit-font-smoothing:antialiased;
+    overflow-x:hidden;
+  }
+  a{color:inherit;}
+  img{max-width:100%;display:block;}
+
+  .wrap{
+    max-width:1040px;
+    margin:0 auto;
+    padding:0 clamp(20px,5vw,56px);
+  }
+
+  /* ---------- Hero ---------- */
+  .hero{
+    padding:clamp(48px,9vw,96px) 0 clamp(36px,6vw,64px);
+    border-bottom:1px solid var(--rule);
+  }
+  .hero h1{
+    font-family:var(--mono);
+    font-weight:800;
+    font-size:clamp(3.2rem,13vw,8.5rem);
+    line-height:0.86;
+    letter-spacing:-0.02em;
+    text-transform:uppercase;
+  }
+  .hero-role{
+    margin-top:clamp(20px,3vw,32px);
+    max-width:56ch;
+    font-size:clamp(1.05rem,2.2vw,1.3rem);
+    color:var(--muted);
+  }
+  .terminal{
+    margin-top:clamp(28px,5vw,40px);
+    border:1px solid var(--rule);
+    padding:16px 20px;
+    font-family:var(--mono);
+    font-size:0.88rem;
+    max-width:560px;
+    overflow-x:auto;
+    color:var(--ink);
+  }
+  .terminal .line{white-space:pre;}
+  .terminal .cursor{
+    display:inline-block;
+    width:8px;height:1em;
+    background:var(--ink);
+    vertical-align:text-bottom;
+    animation:blink 1.1s steps(1) infinite;
+  }
+  @media (prefers-reduced-motion: reduce){
+    .terminal .cursor{animation:none;}
+  }
+  @keyframes blink{50%{opacity:0;}}
+
+  /* ---------- Section scaffolding ---------- */
+  section{
+    padding:clamp(40px,7vw,72px) 0;
+    border-bottom:1px solid var(--rule-soft);
+  }
+  .section-head{
+    display:flex;
+    align-items:baseline;
+    gap:16px;
+    margin-bottom:clamp(28px,4vw,44px);
+  }
+  .section-head h2{
+    font-family:var(--mono);
+    font-weight:700;
+    font-size:clamp(1.2rem,2.4vw,1.5rem);
+    text-transform:uppercase;
+    letter-spacing:0.02em;
+    white-space:nowrap;
+  }
+  .section-head .rule{
+    flex:1 1 auto;
+    height:1px;
+    background:var(--ink-strong);
+    min-width:24px;
+  }
+
+  /* ---------- Intro ---------- */
+  .intro-grid{
+    display:grid;
+    grid-template-columns:180px 1fr;
+    gap:clamp(28px,5vw,56px);
+    align-items:start;
+  }
+  .avatar-col{text-align:center;}
+  .monogram{
+    width:140px;
+    height:140px;
+    border-radius:50%;
+    border:1px solid var(--ink-strong);
+    display:flex;
+    align-items:center;
+    justify-content:center;
+    font-family:var(--mono);
+    font-weight:800;
+    font-size:2.2rem;
+    margin:0 auto;
+  }
+  .monogram-name{
+    margin-top:14px;
+    font-family:var(--mono);
+    font-size:0.85rem;
+    letter-spacing:0.03em;
+  }
+  .intro-text p{
+    max-width:64ch;
+    margin-bottom:1.1em;
+    font-size:1.02rem;
+  }
+  .intro-text p:last-child{margin-bottom:0;}
+
+  /* ---------- Education (timeline, matches wireframe) ---------- */
+  .timeline{
+    position:relative;
+    padding-left:70px;
+  }
+  .timeline::before{
+    content:"";
+    position:absolute;
+    left:34px;
+    top:6px;
+    bottom:6px;
+    width:1px;
+    background:var(--rule);
+  }
+  .edu-row{
+    position:relative;
+    padding:0 0 clamp(24px,4vw,32px);
+  }
+  .edu-row:last-child{padding-bottom:0;}
+  .edu-row::before{
+    content:"";
+    position:absolute;
+    left:-40px;
+    top:4px;
+    width:9px;height:9px;
+    border-radius:50%;
+    background:var(--ink-strong);
+  }
+  .edu-year{
+    font-family:var(--mono);
+    font-size:0.85rem;
+    color:var(--muted);
+    margin-bottom:6px;
+  }
+  .edu-body h3{
+    font-size:1.05rem;
+    font-weight:600;
+    margin-bottom:4px;
+  }
+  .edu-body p{color:var(--muted);font-size:0.95rem;}
+
+  /* ---------- Skills ---------- */
+  .skills-grid{
+    display:grid;
+    grid-template-columns:repeat(2,1fr);
+    gap:clamp(24px,4vw,36px);
+  }
+  .skill-card{
+    background:var(--surface);
+    border:1px solid var(--rule-soft);
+    padding:20px 22px;
+  }
+  .skill-card h3{
+    font-family:var(--mono);
+    font-size:0.9rem;
+    margin-bottom:10px;
+    text-transform:uppercase;
+    letter-spacing:0.02em;
+    border-bottom:1px solid var(--ink-strong);
+    padding-bottom:8px;
+  }
+  .skill-card p{
+    font-size:0.95rem;
+    color:var(--ink);
+  }
+
+  /* ---------- Projects ---------- */
+  .projects-empty{
+    border:1px dashed var(--rule);
+    padding:clamp(28px,5vw,44px);
+    text-align:left;
+  }
+  .projects-empty p{
+    color:var(--muted);
+    max-width:52ch;
+  }
+  .projects-empty .tag{
+    display:block;
+    margin-bottom:10px;
+    font-family:var(--mono);
+    font-size:0.8rem;
+    color:var(--muted);
+  }
+
+  /* ---------- Contact / footer ---------- */
+  footer{
+    background:var(--footer-bg);
+    color:var(--paper);
+    padding:clamp(48px,8vw,80px) 0 clamp(32px,5vw,48px);
+  }
+  footer .wrap{display:flex;flex-direction:column;gap:clamp(24px,4vw,36px);}
+  footer h2{
+    font-family:var(--mono);
+    font-size:clamp(1.6rem,4vw,2.2rem);
+    text-transform:uppercase;
+  }
+  .contact-list{
+    display:flex;
+    flex-wrap:wrap;
+    gap:clamp(20px,4vw,40px);
+  }
+  .contact-item{
+    display:flex;
+    align-items:center;
+    gap:10px;
+    font-family:var(--mono);
+    font-size:0.9rem;
+    color:var(--paper);
+    text-decoration:none;
+    border-bottom:1px solid transparent;
+  }
+  .contact-item:hover{border-bottom-color:var(--paper);}
+  .contact-item svg{width:18px;height:18px;flex:none;stroke:var(--paper);}
+  footer .foot-note{
+    font-size:0.8rem;
+    color:#9A9A9A;
+    font-family:var(--mono);
+  }
+
+  /* ---------- Responsive ---------- */
+  @media (max-width:720px){
+    .intro-grid{grid-template-columns:1fr;}
+    .avatar-col{text-align:left;}
+    .monogram{margin:0;width:110px;height:110px;font-size:1.9rem;}
+    .skills-grid{grid-template-columns:1fr;}
+    .timeline{padding-left:56px;}
+    .timeline::before{left:20px;}
+    .edu-row::before{left:-40px;}
+  }
+</style>
 </head>
 <body>
-     <header>
-     <nav>
-                <div class="dropdown">
-                    <p>Menu</p>
-                    <div class="dropdown-content">
-                    <ul>
-            
-                        <li ><a href="index.php" class="nava" style="color: #fca37c;">Home</a></li>
-                        <li ><a href="AboutUs.php" >About Us</a></li>
-                        <li ><a href="Kitchens.php"  >Kitchens</a></li>
-                        <li ><a href="Interior.php" >Interior Design</a></li>
-                        <li ><a href="WallCloset" >Wall Closet</a></li>
-                        <li ><a href="Furniture" >Wall Closet</a></li>
-        
-                </ul>
-                    </div>
-                </div>
-                <div class="desktop">
-                  
-                    <div >
-                    <ul>
-            
-                        <li ><a href="index.php" class="nava" style="color: #fca37c;">Home</a></li>
-                        <li ><a href="AboutUs.php" >About Us</a></li>
-                        <li ><a href="Kitchens.php"  >Kitchens</a></li>
-                        <li ><a href="Interior.php" >Interior Design</a></li>
-                        <li ><a href="WallCloset" >Wall Closet</a></li>
-                        <li ><a href="Furniture" >Wall Closet</a></li>
-        
-                </ul>
-                    </div>
-                </div>
-             </nav>
-        <img src="elemeents/Group 2.png" class="navlogo">
-    </header>
-   <main>
-    <section class="title">
-        <h2>The Art of Simplicity</h2>
-        <p>Simple yet precise designs to satisfy all tastes and needs. The creativity of our designers creates beauty and practicality.</p>
-       
-    </section>
-    <section class="TXT_card1">
-        <h2>WHAT WE DO</h2>
-        <h2 class="AppearingTxt">BIG THINGS ARE COMING</h2>
-    </section>
-    
-    <section class="KIT">
-        <div class="overlay-container">
-            <div class="overlay">
-                <h2>KITCHEN DESIGN</h2>
-                <p>Our kitchen designs harmonize with practicality and sophistication in</p>
-                <p>perfect balance. Every design is a masterpiece of form and function, from</p>
-                <p>contemporary minimalism to timeless classics, elevate your experiences</p>
-                <p>with spaces that are designed for comfort and style.</p>
-            </div>
-        </div>
-    </section>
-    <section class="FTD">
-        <div class="overlay-container">
-            <div class="overlay">
-                <h2>FURNITURE DESIGN</h2>
-                <p>Explore a symphony of creativity as we reimagine interiors into captivating expertise </p>
-                <p>havens of comfort and aesthetics. Elevate your environment with our </p>
-                <p>where design transforms mere space into unforgettable</p>
-                <p>experiences</p>
-            </div>
-        </div>
-    </section>
-    <section class="ITD">
-        <div class="overlay-container">
-            <div class="overlay">
-                <h2>INTERIOR DESIGN</h2>
-                <p>Explore a symphony of creativity as we reimagine interiors into captivating expertise </p>
-                <p>havens of comfort and aesthetics. Elevate your environment with our </p>
-                <p>where design transforms mere space into unforgettable</p>
-                <p>experiences</p>
-            </div>
-        </div>
-        
-    </section>
-    <section class="WLC">
-        <div class="overlay-container">
-            <div class="overlay">
-                <h2> WALL CLOSET</h2>
-                <p>Introducing our wall closet design, a harmonious blend of style and functionality that</p>
-                <p>transforms your space into an organized haven. This sophisticated design seamlessly integrates into your room, offering a tailored storage solution</p>
-                <p>maximizes both space and aesthetics</p>
-            </div>
-        </div>
-    </section>
-    
-    
-   
-    </main> 
 
-    <footer>
-        <ul class="infoboxul">
-            <li class="infoboxli" >Social Media:</a></li>
-            <li class="infoboxli">Instagram</li>
-            <li class="infoboxli">Facebook</li>
-            <li class="infoboxli">LinkedIn</li>
-            <li class="infoboxli">Behance</li>
-        </ul>
-        <ul class="infoboxul">
-            <li class="infoboxli" >Contact Us:</a></li>
-            <li class="infoboxli">Phone: +962 7 9726 1602</li>
-            <li class="infoboxli">Email: Hurfa.Housing.Design@outlook.com</li>
-            <li class="infoboxli">Address: Al Hezam Road, Amman, Jordan</li>
-        </ul>
-        
-        
-    </footer>
-    
+<header class="hero">
+  <div class="wrap">
+    <h1>Port&#8209;<br>folio</h1>
+    <p class="hero-role">Fahd Suaifan — Computer Science student working across operating&nbsp;system internals, low-level C, and full-stack web development.</p>
+    <div class="terminal">
+      <div class="line">fahd@htu:~$ whoami</div>
+      <div class="line">Fahd Suaifan — CS @ Al Hussein Technical University<span class="cursor"></span></div>
+    </div>
+  </div>
+</header>
+
+<section id="intro">
+  <div class="wrap">
+    <div class="section-head">
+      <h2>Introduction</h2>
+      <span class="rule"></span>
+    </div>
+    <div class="intro-grid">
+      <div class="avatar-col">
+        <div class="monogram">FS</div>
+        <div class="monogram-name">FAHD SUAIFAN</div>
+      </div>
+      <div class="intro-text">
+        <p>I am a Computer Science student at Al Hussein Technical University with a deep focus on systems programming, operating system internals, and full-stack development.</p>
+        <p>Grounded in a hands-on technical curriculum, my academic work bridges low-level POSIX/C architecture with practical web and data analytics solutions.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section id="education">
+  <div class="wrap">
+    <div class="section-head">
+      <h2>Education &amp; Academic Background</h2>
+      <span class="rule"></span>
+    </div>
+    <div class="timeline">
+      <div class="edu-row">
+        <div class="edu-year">Expected 2027</div>
+        <div class="edu-body">
+          <h3>Bachelor of Science in Computer Science</h3>
+          <p>Al Hussein Technical University (HTU) — Amman, Jordan</p>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section id="skills">
+  <div class="wrap">
+    <div class="section-head">
+      <h2>Key Technical Skills</h2>
+      <span class="rule"></span>
+    </div>
+    <div class="skills-grid">
+      <div class="skill-card">
+        <h3>Languages</h3>
+        <p>C, PHP, JavaScript, Python, SQL</p>
+      </div>
+      <div class="skill-card">
+        <h3>Operating Systems &amp; Environments</h3>
+        <p>Linux / Ubuntu — Bash, POSIX API, system administration</p>
+      </div>
+      <div class="skill-card">
+        <h3>Databases &amp; Architecture</h3>
+        <p>MySQL, relational schema normalization, dynamic memory management, multi-threading (pthreads), Inter-Process Communication (IPC)</p>
+      </div>
+      <div class="skill-card">
+        <h3>Data &amp; Analytics Tools</h3>
+        <p>Power BI, RapidMiner, advanced data preprocessing (Excel/Python)</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section id="projects">
+  <div class="wrap">
+    <div class="section-head">
+      <h2>Projects</h2>
+      <span class="rule"></span>
+    </div>
+    <div class="projects-empty">
+      <span class="tag">// under construction</span>
+      <p>This section is being updated with current project work. Check back soon, or reach out directly for a walkthrough.</p>
+    </div>
+  </div>
+</section>
+
+<footer id="contact">
+  <div class="wrap">
+    <h2>Contact Me</h2>
+    <div class="contact-list">
+      <a class="contact-item" href="#" aria-label="Email">
+        <svg viewBox="0 0 24 24" fill="none" stroke-width="1.6"><path d="M3 6h18v12H3z"/><path d="M3 6l9 7 9-7"/></svg>
+        Email
+      </a>
+      <a class="contact-item" href="#" aria-label="Phone">
+        <svg viewBox="0 0 24 24" fill="none" stroke-width="1.6"><rect x="7" y="2" width="10" height="20" rx="2"/><path d="M11 18h2"/></svg>
+        Phone
+      </a>
+      <a class="contact-item" href="#" aria-label="LinkedIn">
+        <svg viewBox="0 0 24 24" fill="none" stroke-width="1.6"><rect x="3" y="3" width="18" height="18" rx="2"/><path d="M7 10v7M7 7v.01M11 17v-4a2 2 0 0 1 4 0v4M11 13v4"/></svg>
+        LinkedIn
+      </a>
+    </div>
+    <div class="foot-note">© 2026 Fahd Suaifan</div>
+  </div>
+</footer>
+
 </body>
- 
 </html>
